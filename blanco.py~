@@ -22,7 +22,6 @@ class Blanco(object):
 		t0= (tiempo_inicial_b-tiempo_inicial).seconds	
 		t1= (tiempo_final_b-tiempo_final_b).seconds
 		senal_ref = [0. for i in range(t0-1) ]
-		senal_ref = senal_ref.append(senal[t0:t1    ]
 		return 1
 
  	elseif tiempo_inicial_b<tiempo_inicial and tiempo_final_b>tiempo_final:
