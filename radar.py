@@ -16,9 +16,9 @@ class Radar(object):
         """
         Detecta si hay un blanco en un medio, en un intervalo de tiempo.
         """
-        #
-        # una_senal = self.generador.generar(tiempo_inicial, tiempo_final)
-        #
+        
+        una_senal = self.generador.generar(tiempo_inicial, tiempo_final)
+        
         # una_senal_reflejada = medio.reflejar(una_senal, tiempo_inicial, \
         # tiempo_final)
         #
