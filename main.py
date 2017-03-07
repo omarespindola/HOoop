@@ -1,9 +1,10 @@
 import radar
 import medio
 import blanco
-import generador
+from generador import Generador
 import datetime
 import detector
+import matplotlib.pyplot as plt
 
 
 # DISCLAMER!!
@@ -24,6 +25,13 @@ def main():
     frecuencia = 20*math.pi
 
     #TODO construir un nuevo genrador de senales
+	
+    Gen = Generador(amplitud,fase,frecuencia)
+
+#    plt.figure()
+#    plt.plot(Gen.generar(tiempo_inicial,tiempo_final)) #Ploteo la onda generada
+#    plt.show() 
+	
 
     #TODO construir un detector
 
