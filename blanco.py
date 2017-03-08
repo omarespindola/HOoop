@@ -17,24 +17,42 @@ class Blanco(object):
         # despues aplicar los parametros del blanco sobre ese intervalo de tiempo
 	
 	segSen = len(senal)
+	f_muestreo = (tiempo_final - tiempo_inicial).seconds / segSen
+	senal_ref = [0.0]*segSen
 
-        if tiempo_inicial_b>=tiempo_inicial and tiempo_final_b<=tiempo_final:
-		t0= (tiempo_inicial_b-tiempo_inicial).seconds	
-		t1= (tiempo_final_b-tiempo_final_b).seconds
-		senal_ref = [0. for i in range(t0-1) ]
-		senal_ref = senal_ref.append(senal[t0:t1    ]
-		return 1
+        if self.tiempo_inicial_b>=tiempo_inicial and self.tiempo_final_b<=tiempo_final:
+		t0= (self.tiempo_inicial_b - tiempo_inicial).seconds / f_muestreo	
+		t1= (self.tiempo_final_b - self.tiempo_inicial_b).seconds / f_muestreo
+		
+		for i in range(t0,t1):
+			senal_ref[i] = self.amplitud*senal[i]
 
- 	elseif tiempo_inicial_b<tiempo_inicial and tiempo_final_b>tiempo_final:
-		return 5
+		return senal_ref
 
-	elseif tiempo_inicial_b<tiempo_inicial and tiempo_final_b<tiempo_final and tiempo_final_b>tiempo_inicial:
-		return 2
+ 	elif self.tiempo_inicial_b < tiempo_inicial and self.tiempo_final_b>tiempo_final:
+		for i in range(segSen):
+			senal_ref[i] = self.amplitud*senal[i]
+		return senal_ref
 
-	elseif tiempo_inicial_b>tiempo_inicial and tiempo_inicial_b<tiempo_final and tiempo_final_b>tiempo_final:
-		return 3
+	elif self.tiempo_inicial_b<tiempo_inicial and self.tiempo_final_b<tiempo_final and self.tiempo_final_b>tiempo_inicial:
+		t0= 0
+		t1= (self.tiempo_final_b - tiempo_inicial).seconds / f_muestreo
+		
+		for i in range(t0,t1):
+			senal_ref[i] = self.amplitud*senal[i]
+
+		return senal_ref
+
+	elif self.tiempo_inicial_b>tiempo_inicial and self.tiempo_inicial_b<tiempo_final and self.tiempo_final_b>tiempo_final:
+		t0= (self.tiempo_inicial_b - tiempo_inicial).seconds / f_muestreo	
+		t1= segSen
+		
+		for i in range(t0,t1):
+			senal_ref[i] = self.amplitud*senal[i]
+
+		return senal_ref
 
 	else: 
-		return 4
+		return senal_ref
         
         

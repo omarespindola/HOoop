@@ -1,9 +1,9 @@
-import radar
-import medio
-import blanco
+from radar import Radar
+from medio import Medio
+from blanco import Blanco
 from generador import Generador
 import datetime
-import detector
+from detector import Detector
 import matplotlib.pyplot as plt
 
 
@@ -23,31 +23,38 @@ def main():
     fase = 1
     frecuencia = 20*math.pi
 
-    #TODO construir un nuevo genrador de senales
+    #Construir un nuevo genrador de senales
 	
     Gen = Generador(amplitud,fase,frecuencia)
 
-#    plt.figure()
-#    plt.plot(Gen.generar(tiempo_inicial,tiempo_final)) #Ploteo la onda generada
-#    plt.show() 
+    #Construir un detector
+
+    detector = Detector()
 	
+    #construir un nuevo radar
 
-    #TODO construir un detector
-
-    #TODO construir un nuevo radar
-
+    radar = Radar(Gen,detector)
 
     # parametros para un blanco
+
     amplitud_de_frecuencia_del_blanco = amplitud + 100
     tiempo_inicial_b = datetime.datetime(2016, 3, 5, 2)
-    tiempo_final_b = datetime.datetime(2016, 3, 5, 4)
+    tiempo_final_b = datetime.datetime(2016, 3, 5, 6)
     
-    #TODO contruir un nuevo blanco
+    # Construir un nuevo blanco
 
+    blanco = Blanco(amplitud_de_frecuencia_del_blanco,tiempo_inicial_b,tiempo_final_b)
 
-    #TODO contruir un medio
+    lista_blancos = [blanco]
 
-    #TODO construir un radar
+    #Construir un medio
+
+    medio = Medio(lista_blancos)
+
+    #Hago funcionar el radar
+
+    radar.detectar(medio,tiempo_inicial,tiempo_final)
+    radar.graficar(medio,tiempo_inicial,tiempo_final)
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,7 @@
 """
 Define el similador del Radar
 """
-
+import matplotlib.pyplot as plt
 
 class Radar(object):
 
@@ -19,10 +19,18 @@ class Radar(object):
         
         una_senal = self.generador.generar(tiempo_inicial, tiempo_final)
         
-        # una_senal_reflejada = medio.reflejar(una_senal, tiempo_inicial, \
-        # tiempo_final)
-        #
-        # return self.detector.detectar(una_senal_reflejada)
-        pass
+        una_senal_reflejada = medio.reflejar(una_senal, tiempo_inicial, tiempo_final)
+        
+        return self.detector.detectar(una_senal,una_senal_reflejada)
 
-    #TODO agregar el metodo plotear_senal
+    def graficar(self, medio, tiempo_inicial, tiempo_final):
+
+	una_senal = self.generador.generar(tiempo_inicial, tiempo_final)
+        
+        una_senal_reflejada = medio.reflejar(una_senal, tiempo_inicial, tiempo_final)
+
+	plt.figure()
+	plt.plot(una_senal) #Ploteo la onda generada
+	plt.plot(una_senal_reflejada) #Ploteo la onda reflejada
+	plt.show()
+	pass
